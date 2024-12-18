@@ -19,4 +19,6 @@ body {
   place-items: center;
   min-width: 100vw;
   min-height: 100vh;
+  background: linear-gradient(25deg, #b0e6cf 0%,  #5dd1ef 90%);
+  color: #091D22;
 }
