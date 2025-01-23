@@ -1,7 +1,8 @@
 import React from 'react'
+import "./App.css";
 
 export default function CloseBtn() {
   return (
-    <div>CloseBtn</div>
+    <div className="closeBtn"></div>
   )
 }

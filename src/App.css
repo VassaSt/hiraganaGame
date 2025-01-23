@@ -1,37 +1,200 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
-  color: #091D22;
+  color: #091d22;
 }
 
-h1{
-font-family: "Paytone One";
-font-weight: 400;
-font-size: 46px;
-text-align: center;
-/* color: #fff0f0; */
-text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+h1 {
+  margin: 80px 10px 30px 10px;
+  text-align: center;
+  font-family: "Paytone One";
+  font-weight: 400;
+  font-size: 38px;
+  text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+  -webkit-text-stroke: 0.2px #ffffff;
+  text-stroke: 0.2px #ffffff;
 }
 
-button{
-margin: 0 auto;
-border-radius: 8px;
-padding: 10px 30px;
-width: 129px;
-height: 48px;
-/* background-color: #fff0f0; */
-border: 1px solid #091D22;
-font-family: "Paytone One";
-font-weight: 400;
-font-size: 20px;
-letter-spacing: 0.1em;
-text-align: center;
-/* color: #00CBFF; */
-/* text-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.15); */
+/* CSS */
+button {
+  appearance: button;
+  background-color: #7f62ff;
+  background-image: none;
+  border: 1px solid #7f62ff;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0, #7f62ff 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  font-family: "Paytone One";
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  -webkit-text-stroke: 0.2px #091d22;
+  text-stroke: 0.2px #091d22;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
-button:active{
-  background-color: #a7a7a7;
+button:focus {
+  text-decoration: none;
+}
+
+button:hover {
+  text-decoration: none;
+}
+
+button:active {
+  box-shadow: rgba(0, 0, 0, 0.125) 0 3px 5px inset;
+  outline: 0;
+}
+
+button:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #7f62ff 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  button {
+    padding: 12px 50px;
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background-image: url('data:image/svg+xml,<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_107_346)"><g filter="url(%23filter0_d_107_346)"><path d="M18 2.25C9.30234 2.25 2.25 9.30234 2.25 18C2.25 26.6977 9.30234 33.75 18 33.75C26.6977 33.75 33.75 26.6977 33.75 18C33.75 9.30234 26.6977 2.25 18 2.25ZM23.8148 23.9836L21.4945 23.973L18 19.807L14.509 23.9695L12.1852 23.9801C12.0305 23.9801 11.9039 23.857 11.9039 23.6988C11.9039 23.632 11.9285 23.5688 11.9707 23.516L16.5445 18.0668L11.9707 12.6211C11.9282 12.5696 11.9047 12.5051 11.9039 12.4383C11.9039 12.2836 12.0305 12.157 12.1852 12.157L14.509 12.1676L18 16.3336L21.491 12.1711L23.8113 12.1605C23.966 12.1605 24.0926 12.2836 24.0926 12.4418C24.0926 12.5086 24.068 12.5719 24.0258 12.6246L19.459 18.0703L24.0293 23.5195C24.0715 23.5723 24.0961 23.6355 24.0961 23.7023C24.0961 23.857 23.9695 23.9836 23.8148 23.9836Z" fill="%23FFF0F0"/></g></g><defs><filter id="filter0_d_107_346" x="0.25" y="2.25" width="35.5" height="35.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="2"/><feGaussianBlur stdDeviation="1"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_107_346"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_107_346" result="shape"/></filter><clipPath id="clip0_107_346"><rect width="36" height="36" fill="white"/></clipPath></defs></svg>');
+  background-repeat: no-repeat;
+}
+
+.layoutStyles {
+  max-width: 375px;
+  height: 600px;
+  padding: 20px;
+  border-radius: 16px;
+  background-color: #a9c9ff;
+  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+}
+
+.screenStyle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  width: 200px;
+  height: 175px;
+  background: rgba(255, 255, 255, 0.25);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(7.6px);
+-webkit-backdrop-filter: blur(7.6px);
+border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 4px;
+}
+
+.characterBoxStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+  width: 50px;
+  height: 50px;
+color: #7f62ff;
+  border-radius: 4px;
+  background: transparent;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.clockStyles {
+  margin: 10px auto;
+  width: 200px;
+  height: fit-content;
+  border: 1px solid #7f62ff;
+  border-radius: 4px;
+  background: #ffffff;
+  font-family: "Paytone One";
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.cloud {
+  background-color: #fff;
+  background-image: -webkit-linear-gradient(
+    hsla(0, 0%, 0%, 0),
+    hsla(0, 0%, 0%, 0.1)
+  );
+  border-radius: 1em;
+  box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, 0.5);
+  display: inline-block;
+
+  -webkit-filter: drop-shadow(0 2px 3px hsla(0, 0%, 0%, 0.25));
+}
+
+.cloud_1 {
+  height: 1em;
+  left: 40%;
+  margin-left: -1.5em;
+  position: absolute;
+  top: 17%;
+  width: 3em;
+}
+.cloud_2 {
+  height: 1em;
+  left: 46%;
+  margin-left: -1.5em;
+  position: absolute;
+  top: 12%;
+  width: 3em;
+}
+.cloud_3 {
+  height: 1em;
+  left: 59%;
+  margin-left: -2.5em;
+  position: absolute;
+  top: 15%;
+  width: 3em;
+}
+.cloud:after,
+.cloud:before {
+  background-color: #fff;
+  content: "";
+  border-radius: 100%;
+  position: absolute;
+}
+.cloud:after {
+  background-image: -webkit-linear-gradient(
+    hsla(0, 0%, 0%, 0) 50%,
+    hsla(0, 0%, 0%, 0.025)
+  );
+  height: 1em;
+  right: 0.4em;
+  top: -0.5em;
+  width: 1em;
+}
+
+.cloud:before {
+  background-image: -webkit-linear-gradient(
+    hsla(0, 0%, 0%, 0) 50%,
+    hsla(0, 0%, 0%, 0.075)
+  );
+  height: 1.6em;
+  left: 0.4em;
+  top: -0.75em;
+  width: 1.6em;
 }
