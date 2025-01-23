@@ -1,9 +1,11 @@
 #root {
-  max-width: 1280px;
+  width: 100vw;
+  height: 100vh;
   margin: 0 auto;
-  padding: 1rem;
   text-align: center;
   color: #091d22;
+  background-color: #a9c9ff;
+  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
 }
 
 h1 {
@@ -20,6 +22,8 @@ h1 {
 /* CSS */
 button {
   appearance: button;
+  width: 100%;
+  max-width: 320px;
   background-color: #7f62ff;
   background-image: none;
   border: 1px solid #7f62ff;
@@ -81,12 +85,12 @@ button:not([disabled]):active {
 }
 
 .layoutStyles {
-  max-width: 375px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
   padding: 20px;
   border-radius: 16px;
-  background-color: #a9c9ff;
-  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+  background-color: transparent;
 }
 
 .screenStyle {
@@ -98,11 +102,11 @@ button:not([disabled]):active {
   width: 200px;
   height: 175px;
   background: rgba(255, 255, 255, 0.25);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.6px);
--webkit-backdrop-filter: blur(7.6px);
-border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.6px);
+  -webkit-backdrop-filter: blur(7.6px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 4px;
 }
 
@@ -113,7 +117,7 @@ border: 1px solid rgba(255, 255, 255, 0.34);
   margin: 8px;
   width: 50px;
   height: 50px;
-color: #7f62ff;
+  color: #7f62ff;
   border-radius: 4px;
   background: transparent;
   font-family: "Noto Sans", sans-serif;
@@ -122,15 +126,58 @@ color: #7f62ff;
 }
 
 .clockStyles {
-  margin: 10px auto;
-  width: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 55px auto;
+  max-width: 320px;
   height: fit-content;
-  border: 1px solid #7f62ff;
-  border-radius: 4px;
-  background: #ffffff;
+}
+
+.line {
+position: absolute;
+border: 1px solid rgba(251, 251, 251, 0.28);
+width: 76px;
+height: 1px;
+backdrop-filter: blur(7.599999904632568px);
+box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.05);
+background: rgba(255, 255, 255, 0.3);
+}
+
+.line_left {
+    margin-right: calc(100% - 100px);
+  top: 50%;
+}
+
+.line_right {
+    margin-left: calc(100% - 100px);
+  top: 50%;
+}
+
+
+
+.clockImg {
+  width: 20px;
+  height: 36px;
+  background-image: url('data:image/svg+xml,<svg width="20" height="36" viewBox="0 0 20 36" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_202_12)"><g filter="url(%23filter0_bd_202_12)"><path d="M0.775156 0C0.347049 0 0 0.34705 0 0.775157V0.775157C0 1.20326 0.347049 1.55031 0.775156 1.55031H19.2248C19.653 1.55031 20 1.20326 20 0.775157V0.775157C20 0.34705 19.653 0 19.2248 0H0.775156ZM2.42857 3.35901C1.87628 3.35901 1.42787 3.80494 1.49625 4.35298C2.05823 8.85665 6.02911 17.1379 10 17.1379C13.9709 17.1379 17.9418 8.85665 18.5037 4.35298C18.5721 3.80494 18.1237 3.35901 17.5714 3.35901H2.42857ZM10 18.8604C6.02901 18.8604 2.05803 27.142 1.49621 31.647C1.42787 32.1951 1.87629 32.641 2.42857 32.641H17.5714C18.1237 32.641 18.5721 32.1951 18.5038 31.647C17.942 27.142 13.971 18.8604 10 18.8604ZM0.775156 34.4497C0.347049 34.4497 0 34.7967 0 35.2248V35.2248C0 35.6529 0.347049 36 0.775156 36H19.2248C19.653 36 20 35.6529 20 35.2248V35.2248C20 34.7967 19.653 34.4497 19.2248 34.4497H0.775156Z" fill="white" fill-opacity="0.3" shape-rendering="crispEdges"/><path d="M19.2248 1.05031H0.775156C0.623192 1.05031 0.5 0.927122 0.5 0.775157C0.5 0.623191 0.623192 0.5 0.775156 0.5H19.2248C19.3768 0.5 19.5 0.623192 19.5 0.775157C19.5 0.927122 19.3768 1.05031 19.2248 1.05031ZM10 16.6379C9.18264 16.6379 8.30494 16.2089 7.40985 15.4021C6.52055 14.6006 5.66431 13.4702 4.90001 12.1795C3.36846 9.59317 2.2633 6.46201 1.99241 4.29107C1.96629 4.08174 2.13486 3.85901 2.42857 3.85901H17.5714C17.8651 3.85901 18.0337 4.08174 18.0076 4.29107C17.7367 6.46201 16.6315 9.59317 15.1 12.1795C14.3357 13.4702 13.4795 14.6006 12.5902 15.4021C11.6951 16.2089 10.8174 16.6379 10 16.6379ZM1.99237 31.7089C2.26319 29.5373 3.36833 26.4057 4.8999 23.8191C5.66421 22.5283 6.52046 21.3978 7.40979 20.5962C8.3049 19.7894 9.18262 19.3604 10 19.3604C10.8174 19.3604 11.6951 19.7894 12.5902 20.5962C13.4795 21.3978 14.3358 22.5283 15.1001 23.8191C16.6317 26.4057 17.7368 29.5373 18.0076 31.7089C18.0337 31.9183 17.8651 32.141 17.5714 32.141H2.42857C2.13487 32.141 1.96626 31.9183 1.99237 31.7089ZM19.2248 34.9497C19.3768 34.9497 19.5 35.0729 19.5 35.2248C19.5 35.3768 19.3768 35.5 19.2248 35.5H0.775156C0.623192 35.5 0.5 35.3768 0.5 35.2248C0.5 35.0729 0.623192 34.9497 0.775156 34.9497H19.2248Z" stroke="%23FBFBFB" stroke-opacity="0.28" shape-rendering="crispEdges"/></g></g><defs><filter id="filter0_bd_202_12" x="-30" y="-26" width="80" height="96" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feGaussianBlur in="BackgroundImageFix" stdDeviation="3.8"/><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_202_12"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dy="4"/><feGaussianBlur stdDeviation="15"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/><feBlend mode="normal" in2="effect1_backgroundBlur_202_12" result="effect2_dropShadow_202_12"/><feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_202_12" result="shape"/></filter><clipPath id="clip0_202_12"><rect width="20" height="36" fill="white"/></clipPath></defs></svg>');
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 30px;
+}
+
+.time {
+  margin-bottom: 5px;
   font-family: "Paytone One";
-  font-weight: 400;
-  font-size: 24px;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 100%;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(7.599999904632568px);
+  text-shadow: 0 4px 30px #00000005;
+  -webkit-text-stroke: 1px #fbfbfb4d;
 }
 
 .cloud {
