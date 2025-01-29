@@ -5,28 +5,29 @@ import "./App.css";
 import BtnScreen from "./BtnScreen";
 import AudioScreen from "./AudioScreen";
 import CharacterScreen from "./CharacterScreen";
+import TrueScreen from "./TrueScreen";
+import FalseScreen from "./FalseScreen";
 import { CHARACTERS, HIRAGANA_AUDIO } from "./utils/hiragana";
 
 const App: React.FC = () => {
-  const [screen, setScreen] = useState<"btn" | "audio" | "character">("btn"); // Track which screen is shown
+  const [screen, setScreen] = useState<
+    "btn" | "audio" | "character" | "true" | "false"
+  >("btn");
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
     null
-  ); // Store the selected Hiragana character
+  );
 
-  const handleStart = () => {
-    setScreen("audio"); // Show AudioScreen
+  const startNewRound = () => {
+    setScreen("audio"); // Reset to AudioScreen with a new character
 
-    // Select a random Hiragana character
+    // Select a new random Hiragana character
     const randomIndex = Math.floor(Math.random() * CHARACTERS.length);
     const randomCharacter = CHARACTERS[randomIndex];
 
-    // Save the selected character
     setSelectedCharacter(randomCharacter);
+    console.log(`New Random Hiragana character: ${randomCharacter}`);
 
-    // Log the character to the console
-    console.log(`Random Hiragana character: ${randomCharacter}`);
-
-    // Play the audio for the selected character
+    // Play the audio for the new character
     const audioPath = HIRAGANA_AUDIO[randomCharacter];
     if (audioPath) {
       const audio = new Audio(audioPath);
@@ -36,8 +37,16 @@ const App: React.FC = () => {
     }
   };
 
+  const handleStart = () => {
+    startNewRound(); // Start the game for the first time
+  };
+
   const handleTimeEnd = () => {
-    setScreen("character"); // Switch to CharacterScreen when time ends
+    setScreen("character"); // Move to CharacterScreen when the timer ends
+  };
+
+  const handleCharacterSelection = (isCorrect: boolean) => {
+    setScreen(isCorrect ? "true" : "false"); // Show TrueScreen or FalseScreen based on selection
   };
 
   return (
@@ -49,8 +58,13 @@ const App: React.FC = () => {
         <AudioScreen character={selectedCharacter} onTimeEnd={handleTimeEnd} />
       )}
       {screen === "character" && selectedCharacter && (
-        <CharacterScreen character={selectedCharacter} />
+        <CharacterScreen
+          character={selectedCharacter}
+          onSelectCharacter={handleCharacterSelection}
+        />
       )}
+      {screen === "true" && <TrueScreen restartGame={startNewRound} />}
+      {screen === "false" && <FalseScreen restartGame={startNewRound} />}
     </Layout>
   );
 };

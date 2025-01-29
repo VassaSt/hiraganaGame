@@ -140,20 +140,6 @@ background-repeat: no-repeat;
 background-position: center;
 }
 
-.characterBoxStyle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 8px;
-  width: 50px;
-  height: 50px;
-  color: #7f62ff;
-  border-radius: 4px;
-  background: transparent;
-  font-family: "Noto Sans", sans-serif;
-  font-size: 24px;
-  font-weight: 900;
-}
 
 .clockStyles {
   position: relative;
@@ -196,6 +182,7 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .timer {
+  width: 50px;
   margin-bottom: 5px;
   font-family: "Paytone One";
   font-weight: 600;
@@ -207,6 +194,26 @@ background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(7.599999904632568px);
   text-shadow: 0 4px 30px #00000005;
   -webkit-text-stroke: 1px #fbfbfb4d;
+}
+
+.characterScreen{
+  width: 100%;
+  max-width: 330px;
+}
+
+.characterBoxStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+  width: 50px;
+  height: 50px;
+  color: #7f62ff;
+  border-radius: 4px;
+  background: transparent;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 900;
 }
 
 .cloud {
