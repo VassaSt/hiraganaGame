@@ -4,16 +4,17 @@ import { Layout } from "antd";
 import "./App.css";
 import BtnScreen from "./BtnScreen";
 import AudioScreen from "./AudioScreen";
+import CharacterScreen from "./CharacterScreen";
 import { CHARACTERS, HIRAGANA_AUDIO } from "./utils/hiragana";
 
 const App: React.FC = () => {
-  const [showAudioScreen, setShowAudioScreen] = useState(false); // Controls whether AudioScreen is shown
+  const [screen, setScreen] = useState<"btn" | "audio" | "character">("btn"); // Track which screen is shown
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
     null
-  ); // Stores the random character
+  ); // Store the selected Hiragana character
 
   const handleStart = () => {
-    setShowAudioScreen(true); // Show AudioScreen
+    setScreen("audio"); // Show AudioScreen
 
     // Select a random Hiragana character
     const randomIndex = Math.floor(Math.random() * CHARACTERS.length);
@@ -35,12 +36,20 @@ const App: React.FC = () => {
     }
   };
 
+  const handleTimeEnd = () => {
+    setScreen("character"); // Switch to CharacterScreen when time ends
+  };
+
   return (
     <Layout className="layoutStyles">
-      {showAudioScreen && selectedCharacter ? (
-        <AudioScreen character={selectedCharacter} />
-      ) : (
+      {screen === "btn" && (
         <BtnScreen showStartButton={true} onStart={handleStart} />
+      )}
+      {screen === "audio" && selectedCharacter && (
+        <AudioScreen character={selectedCharacter} onTimeEnd={handleTimeEnd} />
+      )}
+      {screen === "character" && selectedCharacter && (
+        <CharacterScreen character={selectedCharacter} />
       )}
     </Layout>
   );

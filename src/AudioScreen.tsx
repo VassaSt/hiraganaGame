@@ -4,10 +4,11 @@ import Time from "./Time";
 import { HIRAGANA_AUDIO } from "./utils/hiragana";
 
 interface AudioScreenProps {
-  character: string; // The selected Hiragana character
+  character: string;
+  onTimeEnd: () => void; // Callback when time reaches 0
 }
 
-const AudioScreen: React.FC<AudioScreenProps> = ({ character }) => {
+const AudioScreen: React.FC<AudioScreenProps> = ({ character, onTimeEnd }) => {
   const audioPath = HIRAGANA_AUDIO[character];
 
   // Play the audio when the component mounts
@@ -29,7 +30,7 @@ const AudioScreen: React.FC<AudioScreenProps> = ({ character }) => {
   return (
     <div className="AudioScreen">
       <h2>Listen</h2>
-      <Time initialTime={5} />
+      <Time initialTime={5} onTimeEnd={onTimeEnd} />
       <button
         type="button"
         className="screenStyle audioImg"
