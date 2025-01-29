@@ -1,8 +1,7 @@
-// src/FalseScreen.tsx
 import React from "react";
 
 interface FalseScreenProps {
-  restartGame: () => void; // Function to restart the game
+  restartGame: () => void; // Restart the game
 }
 
 const FalseScreen: React.FC<FalseScreenProps> = ({ restartGame }) => {

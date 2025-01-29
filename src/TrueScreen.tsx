@@ -1,8 +1,7 @@
-// src/TrueScreen.tsx
 import React from "react";
 
 interface TrueScreenProps {
-  restartGame: () => void; // Function to restart the game
+  restartGame: () => void; // Restart the game
 }
 
 const TrueScreen: React.FC<TrueScreenProps> = ({ restartGame }) => {

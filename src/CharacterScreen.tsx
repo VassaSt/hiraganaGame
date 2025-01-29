@@ -1,10 +1,9 @@
-// src/CharacterScreen.tsx
 import React, { useMemo } from "react";
 import Time from "./Time";
 import { CHARACTERS } from "./utils/hiragana";
 
 interface CharacterScreenProps {
-  character: string; // Correct character from audio
+  character: string; // Character from audio
   onSelectCharacter: (isCorrect: boolean) => void; // Function to handle selection
 }
 
@@ -43,7 +42,7 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
           <div
             key={char}
             className="characterBoxStyle"
-            onClick={() => handleCharacterClick(char)} // Handle user click
+            onClick={() => handleCharacterClick(char)}
           >
             {char}
           </div>

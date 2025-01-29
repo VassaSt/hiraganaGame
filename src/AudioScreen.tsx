@@ -1,4 +1,3 @@
-// src/AudioScreen.tsx
 import React, { useEffect } from "react";
 import Time from "./Time";
 import { HIRAGANA_AUDIO } from "./utils/hiragana";
@@ -19,7 +18,7 @@ const AudioScreen: React.FC<AudioScreenProps> = ({ character, onTimeEnd }) => {
     }
   }, [audioPath]);
 
-  // Function to replay the audio when button is clicked
+  // Replay the audio
   const replayAudio = () => {
     if (audioPath) {
       const audio = new Audio(audioPath);

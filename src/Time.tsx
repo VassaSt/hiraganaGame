@@ -1,4 +1,3 @@
-// src/Time.tsx
 import React, { useEffect, useState } from "react";
 
 interface TimeProps {
