@@ -1,38 +1,39 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Time from "./Time";
 import { CHARACTERS } from "./utils/hiragana";
-
 interface CharacterScreenProps {
-  character: string; // Character from audio
-  onSelectCharacter: (isCorrect: boolean) => void; // Function to handle selection
+  character: string;
+  onSelectCharacter: (isCorrect: boolean) => void;
 }
-
 const CharacterScreen: React.FC<CharacterScreenProps> = ({
   character,
   onSelectCharacter,
 }) => {
-  // Function to get 4 random incorrect characters
+  const [clickedChar, setClickedChar] = useState<string | null>(null);
+  const [isCorrectClick, setIsCorrectClick] = useState<boolean | null>(null);
   const getRandomCharacters = (correctChar: string) => {
-    const filteredCharacters = CHARACTERS.filter(
-      (char) => char !== correctChar
-    ); // Remove correct character
-    const shuffled = [...filteredCharacters].sort(() => 0.5 - Math.random()); // Shuffle
-    return shuffled.slice(0, 4); // Pick first 4
+    const filtered = CHARACTERS.filter((char) => char !== correctChar);
+    const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 4);
   };
-
-  // Memoized array of 5 characters (1 correct + 4 random)
   const characterOptions = useMemo(() => {
-    const randomCharacters = getRandomCharacters(character);
-    const allCharacters = [...randomCharacters, character]; // Add correct character
-    return allCharacters.sort(() => 0.5 - Math.random()); // Shuffle again
+    const randomChars = getRandomCharacters(character);
+    const all = [...randomChars, character];
+    return all.sort(() => 0.5 - Math.random());
   }, [character]);
-
-  // Function to handle character click
-  const handleCharacterClick = (selectedCharacter: string) => {
-    const isCorrect = selectedCharacter === character;
-    onSelectCharacter(isCorrect); // Pass the result to App.tsx
+  const handleCharacterClick = (selected: string) => {
+    if (clickedChar) return;
+    const correct = selected === character;
+    setClickedChar(selected);
+    setIsCorrectClick(correct);
+    onSelectCharacter(correct);
   };
-
+  const getClassName = (char: string) => {
+    if (char !== clickedChar) return "characterBoxStyle";
+    return `characterBoxStyle ${
+      isCorrectClick ? "char-correct" : "char-incorrect"
+    }`;
+  };
   return (
     <div className="characterScreen">
       <h2>Find</h2>
@@ -41,7 +42,7 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
         {characterOptions.map((char) => (
           <div
             key={char}
-            className="characterBoxStyle"
+            className={getClassName(char)}
             onClick={() => handleCharacterClick(char)}
           >
             {char}
@@ -51,5 +52,4 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
     </div>
   );
 };
-
 export default CharacterScreen;

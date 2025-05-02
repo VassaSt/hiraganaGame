@@ -147,8 +147,7 @@ background-position: center;
   align-items: center;
   justify-content: center;
   margin: 20px auto;
-  width: 100%;
-  max-width: 330px;
+  width: 320px;
   height: fit-content;
 }
 
@@ -200,7 +199,6 @@ background: rgba(255, 255, 255, 0.3);
   width: 100%;
   max-width: 330px;
 }
-
 .characterBoxStyle {
   display: flex;
   justify-content: center;
@@ -214,6 +212,28 @@ background: rgba(255, 255, 255, 0.3);
   font-family: "Noto Sans", sans-serif;
   font-size: 24px;
   font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.characterBoxStyle.char-correct {
+  background: #00B76A;
+  color: white;
+  transform: scale(1.1);
+}
+
+.characterBoxStyle.char-incorrect {
+  background: #FF6262;
+  color: white;
+  transform: scale(1.1);
+}
+.characterBoxStyle:hover{
+background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.6px);
+  -webkit-backdrop-filter: blur(7.6px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 4px;
 }
 
 .cloud {
@@ -279,4 +299,32 @@ background: rgba(255, 255, 255, 0.3);
   left: 0.4em;
   top: -0.75em;
   width: 1.6em;
+}
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.resultScreen {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.6px);
+  -webkit-backdrop-filter: blur(7.6px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+.resultScreen.correct h2 {
+  color: green;
+}
+.resultScreen.incorrect h2 {
+  color: red;
 }
