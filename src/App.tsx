@@ -11,7 +11,7 @@ import { CHARACTERS, HIRAGANA_AUDIO } from "./utils/hiragana";
 const App: React.FC = () => {
   const [screen, setScreen] = useState<
     "start" | "choseTime" | "btn" | "audio" | "character"
-  >("choseTime");
+  >("start");
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
     null
@@ -30,14 +30,17 @@ const App: React.FC = () => {
       console.error(`Audio not found for character: ${randomCharacter}`);
     }
   };
+
+  const handleGameStart = () => {
+    setScreen("choseTime"); // Transition to the "choseTime" screen
+  };
+  const handleTimeSelect = (time: number) => {
+    setSelectedTime(time);
+    setScreen("btn"); // Transition to the "btn" screen after selecting time
+  };
   const handleStart = () => {
     startNewRound();
   };
-    const handleTimeSelect = (time: number) => {
-      setSelectedTime(time);
-      setScreen("btn"); // Transition to the "btn" screen after selecting time
-    };
-
   const handleTimeEnd = () => {
     setScreen("character");
   };
@@ -46,6 +49,9 @@ const App: React.FC = () => {
   };
   return (
     <Layout className="layoutStyles">
+      {screen === "start" && (
+        <StartBtnScreen showStartButton={true} onStart={handleGameStart} />
+      )}
       {screen === "choseTime" && (
         <ChooseTimeScreen onTimeSelect={handleTimeSelect} />
       )}
