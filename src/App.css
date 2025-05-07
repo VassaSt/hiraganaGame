@@ -207,7 +207,7 @@ button:not([disabled]):active {
   border-radius: 4px;
   background: transparent;
   font-family: "Noto Sans", sans-serif;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 900;
   cursor: pointer;
   transition: all 0.3s ease;

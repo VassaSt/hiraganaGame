@@ -8,6 +8,7 @@ import CharacterScreen from "./CharacterScreen";
 import TrueScreen from "./TrueScreen";
 import FalseScreen from "./FalseScreen";
 import { CHARACTERS, HIRAGANA_AUDIO } from "./utils/hiragana";
+
 const App: React.FC = () => {
   const [screen, setScreen] = useState<
     "start" | "choseTime" | "btn" | "audio" | "character"
@@ -16,10 +17,11 @@ const App: React.FC = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
     null
   );
-  const [result, setResult] = useState<"true" | "false" | null>(null); // :arrow_left: for popup
+  const [result, setResult] = useState<"true" | "false" | null>(null); // For popup
+
   const startNewRound = () => {
     setScreen("audio");
-    setResult(null); // hide popup
+    setResult(null); // Hide popup
     const randomIndex = Math.floor(Math.random() * CHARACTERS.length);
     const randomCharacter = CHARACTERS[randomIndex];
     setSelectedCharacter(randomCharacter);
@@ -34,29 +36,44 @@ const App: React.FC = () => {
   const handleGameStart = () => {
     setScreen("choseTime"); // Transition to the "choseTime" screen
   };
+
   const handleTimeSelect = (time: number) => {
     setSelectedTime(time);
     setScreen("btn"); // Transition to the "btn" screen after selecting time
   };
+
   const handleStart = () => {
     startNewRound();
   };
+
   const handleTimeEnd = () => {
     setScreen("character");
   };
+
   const handleCharacterSelection = (isCorrect: boolean) => {
-    setResult(isCorrect ? "true" : "false"); // :arrow_left: show popup
+    setResult(isCorrect ? "true" : "false"); // Show popup
   };
+
   return (
     <Layout className="layoutStyles">
       {screen === "start" && (
-        <StartBtnScreen showStartButton={true} onStart={handleGameStart} />
+        <StartBtnScreen
+          showStartButton={true}
+          onStart={handleGameStart}
+          title="Find Character"
+          buttonText="Let's play"
+        />
       )}
       {screen === "choseTime" && (
         <ChooseTimeScreen onTimeSelect={handleTimeSelect} />
       )}
       {screen === "btn" && (
-        <StartBtnScreen showStartButton={true} onStart={handleStart} />
+        <StartBtnScreen
+          showStartButton={true}
+          onStart={handleStart}
+          title="Listen and Find"
+          buttonText="Start"
+        />
       )}
       {screen === "audio" && selectedCharacter && (
         <AudioScreen character={selectedCharacter} onTimeEnd={handleTimeEnd} />
@@ -82,4 +99,5 @@ const App: React.FC = () => {
     </Layout>
   );
 };
+
 export default App;
