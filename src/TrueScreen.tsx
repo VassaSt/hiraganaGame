@@ -7,8 +7,7 @@ interface TrueScreenProps {
 const TrueScreen: React.FC<TrueScreenProps> = ({ restartGame }) => {
   return (
     <div className="resultScreen correct">
-      <h2>✅ Correct!</h2>
-      <p>Great job! You chose the right character.</p>
+      <h2>Well done!</h2>
       <button onClick={restartGame}>Continue</button>
     </div>
   );

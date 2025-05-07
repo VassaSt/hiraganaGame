@@ -4,8 +4,7 @@
   margin: 0 auto;
   text-align: center;
   color: #091d22;
-  background-color: #a9c9ff;
-  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+  background: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
 }
 
 h1 {
@@ -19,7 +18,16 @@ h1 {
   text-stroke: 0.2px #ffffff;
 }
 
-/* CSS */
+h2{
+  font-family: "Paytone One";
+font-weight: 400;
+font-size: 42px;
+line-height: 100%;
+letter-spacing: 0.1em;
+text-align: center;
+color: #091d22;
+}
+
 button {
   appearance: button;
   width: 100%;
@@ -90,18 +98,7 @@ button:not([disabled]):active {
   height: 100%;
   align-items: center;
   padding: 20px;
-  border-radius: 16px;
   background-color: transparent;
-}
-
-.lightningBlock{
-  position: fixed;
-  top: 40%;
-  width: 220px;
-  height: 220px;
-  border-radius: 100%;
- background-color: #ffffff;
-filter: blur(110px);
 }
 
 .screenStyle {
@@ -110,7 +107,7 @@ filter: blur(110px);
   justify-content: center;
   align-items: center;
   margin: 10px auto;
-  width: 200px;
+  width: 250px;
   height: 175px;
   background: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
@@ -217,16 +214,27 @@ background: rgba(255, 255, 255, 0.3);
 }
 
 .characterBoxStyle.char-correct {
-  background: #00B76A;
-  color: white;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.6px);
+  -webkit-backdrop-filter: blur(7.6px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 4px;
+  color:#00B76A;
   transform: scale(1.1);
 }
 
 .characterBoxStyle.char-incorrect {
-  background: #FF6262;
-  color: white;
+    background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.6px);
+  -webkit-backdrop-filter: blur(7.6px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 4px;
+  color: #FF6262;
   transform: scale(1.1);
 }
+
 .characterBoxStyle:hover{
 background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -235,6 +243,7 @@ background: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 4px;
 }
+
 
 .cloud {
   background-color: #fff;
@@ -323,8 +332,10 @@ background: rgba(255, 255, 255, 0.25);
   text-align: center;
 }
 .resultScreen.correct h2 {
-  color: green;
+  font-size: 32px;
+  color: #7F62FF;
 }
 .resultScreen.incorrect h2 {
-  color: red;
+  font-size: 32px;
+  color: #091d22;
 }

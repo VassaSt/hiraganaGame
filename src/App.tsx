@@ -36,31 +36,34 @@ const App: React.FC = () => {
     setResult(isCorrect ? "true" : "false"); // :arrow_left: Показать попап
   };
   return (
-    <Layout className="layoutStyles">
-      {screen === "btn" && (
-        <BtnScreen showStartButton={true} onStart={handleStart} />
-      )}
-      {screen === "audio" && selectedCharacter && (
-        <AudioScreen character={selectedCharacter} onTimeEnd={handleTimeEnd} />
-      )}
-      {screen === "character" && selectedCharacter && (
-        <CharacterScreen
-          character={selectedCharacter}
-          onSelectCharacter={handleCharacterSelection}
-        />
-      )}
-      {/* Popup-overlay */}
-      {result === "true" && (
-        <div className="popupOverlay">
-          <TrueScreen restartGame={startNewRound} />
-        </div>
-      )}
-      {result === "false" && (
-        <div className="popupOverlay">
-          <FalseScreen restartGame={startNewRound} />
-        </div>
-      )}
-    </Layout>
+      <Layout className="layoutStyles">
+        {screen === "btn" && (
+          <BtnScreen showStartButton={true} onStart={handleStart} />
+        )}
+        {screen === "audio" && selectedCharacter && (
+          <AudioScreen
+            character={selectedCharacter}
+            onTimeEnd={handleTimeEnd}
+          />
+        )}
+        {screen === "character" && selectedCharacter && (
+          <CharacterScreen
+            character={selectedCharacter}
+            onSelectCharacter={handleCharacterSelection}
+          />
+        )}
+        {/* Popup-overlay */}
+        {result === "true" && (
+          <div className="popupOverlay">
+            <TrueScreen restartGame={startNewRound} />
+          </div>
+        )}
+        {result === "false" && (
+          <div className="popupOverlay">
+            <FalseScreen restartGame={startNewRound} />
+          </div>
+        )}
+      </Layout>
   );
 };
 export default App;
