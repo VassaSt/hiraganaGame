@@ -1,11 +1,14 @@
 import React, { useMemo, useState } from "react";
 import Time from "./Time";
 import { CHARACTERS } from "./utils/hiragana";
+
 interface CharacterScreenProps {
+  selectedTime: number;
   character: string;
   onSelectCharacter: (isCorrect: boolean) => void;
 }
 const CharacterScreen: React.FC<CharacterScreenProps> = ({
+  selectedTime,
   character,
   onSelectCharacter,
 }) => {
@@ -37,7 +40,7 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
   return (
     <div className="characterScreen">
       <h2>Find</h2>
-      <Time initialTime={5} />
+      <Time initialTime={selectedTime} />
       <div className="screenStyle">
         {characterOptions.map((char) => (
           <div
