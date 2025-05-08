@@ -6,24 +6,30 @@ interface CharacterScreenProps {
   selectedTime: number;
   character: string;
   onSelectCharacter: (isCorrect: boolean) => void;
+  onTimeOut: () => void; // Add this prop for when time runs out
 }
+
 const CharacterScreen: React.FC<CharacterScreenProps> = ({
   selectedTime,
   character,
   onSelectCharacter,
+  onTimeOut,
 }) => {
   const [clickedChar, setClickedChar] = useState<string | null>(null);
   const [isCorrectClick, setIsCorrectClick] = useState<boolean | null>(null);
+
   const getRandomCharacters = (correctChar: string) => {
     const filtered = CHARACTERS.filter((char) => char !== correctChar);
     const shuffled = [...filtered].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 4);
   };
+
   const characterOptions = useMemo(() => {
     const randomChars = getRandomCharacters(character);
     const all = [...randomChars, character];
     return all.sort(() => 0.5 - Math.random());
   }, [character]);
+
   const handleCharacterClick = (selected: string) => {
     if (clickedChar) return;
     const correct = selected === character;
@@ -31,16 +37,19 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
     setIsCorrectClick(correct);
     onSelectCharacter(correct);
   };
+
   const getClassName = (char: string) => {
     if (char !== clickedChar) return "characterBoxStyle";
     return `characterBoxStyle ${
       isCorrectClick ? "char-correct" : "char-incorrect"
     }`;
   };
+
   return (
     <div className="characterScreen">
       <h2>Find</h2>
-      <Time initialTime={selectedTime} />
+      <Time initialTime={selectedTime} onTimeEnd={onTimeOut} />{" "}
+      {/* Pass onTimeOut */}
       <div className="screenStyle">
         {characterOptions.map((char) => (
           <div
@@ -55,4 +64,5 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
     </div>
   );
 };
+
 export default CharacterScreen;

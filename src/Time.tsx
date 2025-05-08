@@ -2,25 +2,23 @@ import React, { useEffect, useState } from "react";
 
 interface TimeProps {
   initialTime: number;
-  onTimeEnd?: () => void; // Callback when time reaches 0
+  onTimeEnd: () => void; // Callback when time reaches 0
 }
 
 const Time: React.FC<TimeProps> = ({ initialTime, onTimeEnd }) => {
   const [time, setTime] = useState(initialTime);
 
   useEffect(() => {
-    if (time === 0) {
-      if (onTimeEnd) {
-        onTimeEnd(); // Trigger callback when time reaches 0
-      }
+    if (time <= 0) {
+      onTimeEnd(); // Trigger callback when time reaches 0
       return;
     }
 
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       setTime((prevTime) => prevTime - 1);
     }, 1000);
 
-    return () => clearTimeout(timer);
+    return () => clearInterval(timer);
   }, [time, onTimeEnd]);
 
   return (

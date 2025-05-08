@@ -11,7 +11,7 @@ const ChooseTimeScreen: React.FC<ChooseTimeScreenProps> = ({
   const times = [5, 7, 10];
 
   return (
-    <div style={styles.container}>
+    <div className="chooseTimeStyle">
       <h2>Choose Time</h2>
       {times.map((time) => (
         <button
@@ -28,14 +28,5 @@ const ChooseTimeScreen: React.FC<ChooseTimeScreenProps> = ({
   );
 };
 
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column" as const,
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-  },
-};
 
 export default ChooseTimeScreen;

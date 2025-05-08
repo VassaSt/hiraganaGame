@@ -1,16 +1,17 @@
+
 import React from "react";
 
-interface FalseScreenProps {
-  restartGame: () => void; // Restart the game
+interface TimeOffScreenProps {
+  restartGame: () => void;
 }
 
-const FalseScreen: React.FC<FalseScreenProps> = ({ restartGame }) => {
+const TimeOffScreen: React.FC<TimeOffScreenProps> = ({ restartGame }) => {
   return (
     <div className="resultScreen incorrect">
-      <h2>Time off</h2>
+      <h2>Time's Up!</h2>
       <button onClick={restartGame}>Try Again</button>
     </div>
   );
 };
 
-export default FalseScreen;
+export default TimeOffScreen;

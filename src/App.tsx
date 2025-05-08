@@ -1,3 +1,4 @@
+// src/App.tsx
 import React, { useState } from "react";
 import { Layout } from "antd";
 import "./App.css";
@@ -7,17 +8,18 @@ import AudioScreen from "./AudioScreen";
 import CharacterScreen from "./CharacterScreen";
 import TrueScreen from "./TrueScreen";
 import FalseScreen from "./FalseScreen";
+import TimeOffScreen from "./TimeOffScreen";
 import { CHARACTERS, HIRAGANA_AUDIO } from "./utils/hiragana";
 
 const App: React.FC = () => {
   const [screen, setScreen] = useState<
-    "start" | "choseTime" | "btn" | "audio" | "character"
+    "start" | "choseTime" | "btn" | "audio" | "character" | "timeOff"
   >("start");
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
     null
   );
-  const [result, setResult] = useState<"true" | "false" | null>(null); // For popup
+  const [result, setResult] = useState<"true" | "false" | null>(null);
 
   const startNewRound = () => {
     setScreen("audio");
@@ -34,12 +36,12 @@ const App: React.FC = () => {
   };
 
   const handleGameStart = () => {
-    setScreen("choseTime"); // Transition to the "choseTime" screen
+    setScreen("choseTime"); // Switch to the time selection screen
   };
 
   const handleTimeSelect = (time: number) => {
     setSelectedTime(time);
-    setScreen("btn"); // Transition to the "btn" screen after selecting time
+    setScreen("btn"); // Switch to the start button screen
   };
 
   const handleStart = () => {
@@ -51,28 +53,29 @@ const App: React.FC = () => {
   };
 
   const handleCharacterSelection = (isCorrect: boolean) => {
-    setResult(isCorrect ? "true" : "false"); // Show popup
+    if (isCorrect) {
+      setResult("true");
+    } else {
+      setResult("false");
+    }
+  };
+
+  // Handle timeout scenario
+  const handleTimeout = () => {
+    setScreen("timeOff");
   };
 
   return (
     <Layout className="layoutStyles">
-      {screen === "start" && (
-        <StartBtnScreen
-          showStartButton={true}
-          onStart={handleGameStart}
-          title="Find Character"
-          buttonText="Let's play"
-        />
-      )}
       {screen === "choseTime" && (
         <ChooseTimeScreen onTimeSelect={handleTimeSelect} />
       )}
       {screen === "btn" && (
         <StartBtnScreen
           showStartButton={true}
-          onStart={handleStart}
-          title="Listen and Find"
+          title="Listen and find"
           buttonText="Start"
+          onStart={handleStart}
         />
       )}
       {screen === "audio" && selectedCharacter && (
@@ -83,8 +86,10 @@ const App: React.FC = () => {
           selectedTime={selectedTime || 5} // Default time if not set
           character={selectedCharacter}
           onSelectCharacter={handleCharacterSelection}
+          onTimeOut={handleTimeout} // Improve passing handleTimeout
         />
       )}
+      {screen === "timeOff" && <TimeOffScreen restartGame={startNewRound} />}
       {/* Popup-overlay */}
       {result === "true" && (
         <div className="popupOverlay">
