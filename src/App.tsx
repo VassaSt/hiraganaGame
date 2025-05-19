@@ -35,9 +35,10 @@ const App: React.FC = () => {
     }
   };
 
-  const handleGameStart = () => {
-    setScreen("choseTime"); // Switch to the time selection screen
-  };
+const handleGameStart = () => {
+  setScreen("choseTime"); // ✅ Go to time selection screen
+};
+
 
   const handleTimeSelect = (time: number) => {
     setSelectedTime(time);
@@ -67,6 +68,15 @@ const App: React.FC = () => {
 
   return (
     <Layout className="layoutStyles">
+      {screen === "start" && (
+        <StartBtnScreen
+          showStartButton={true}
+          title="Find character"
+          buttonText="Let's play"
+          onStart={handleGameStart}
+        />
+      )}
+
       {screen === "choseTime" && (
         <ChooseTimeScreen onTimeSelect={handleTimeSelect} />
       )}
