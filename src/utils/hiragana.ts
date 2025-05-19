@@ -50,7 +50,7 @@ export const CHARACTERS = [
 ];
 
 // Dynamically load all audio files from `src/audio`
-const audioFiles = import.meta.glob("../audio/*.mp3", { eager: true });
+const audioFiles = import.meta.glob("../audio/*.ogg", { eager: true });
 
 // Romanized names corresponding to Hiragana characters
 const ROMANIZED = [
@@ -106,7 +106,7 @@ const ROMANIZED = [
 export const HIRAGANA_AUDIO: Record<string, string> = CHARACTERS.reduce(
   (acc, char, index) => {
     const romanizedName = ROMANIZED[index]; // Map Hiragana to its Romanized name
-    const audioPath = `../audio/${romanizedName}.mp3`; // Construct the file path
+    const audioPath = `../audio/${romanizedName}.ogg`; // Construct the file path
     const module = audioFiles[audioPath];
 
     if (module && typeof module === "object" && "default" in module) {
