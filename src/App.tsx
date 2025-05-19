@@ -36,7 +36,7 @@ const App: React.FC = () => {
   };
 
   const handleGameStart = () => {
-    setScreen("choseTime"); // ✅ Go to time selection screen
+    setScreen("choseTime"); // Go to time selection screen
   };
 
   const handleTimeSelect = (time: number) => {
@@ -45,16 +45,15 @@ const App: React.FC = () => {
   };
 
   const handleStart = () => {
-    startNewRound();
+    startNewRound(); // Start the game with a random character
   };
 
   const handleTimeEnd = () => {
-    setScreen("character");
+    setScreen("character"); // Show character selection screen
   };
 
-  // Handle timeout scenario
   const handleTimeout = () => {
-    setScreen("timeOff");
+    setScreen("timeOff"); // Handle timeout scenario
   };
 
   // Check if the selected character is correct
