@@ -17,6 +17,7 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
   onTimeOut,
 }) => {
   const [timerStopped, setTimerStopped] = useState(false);
+  const [selectedChar, setSelectedChar] = useState<string | null>(null); // Which character user clicked
 
   const getRandomCharacters = (correctChar: string) => {
     const filtered = CHARACTERS.filter((c) => c !== correctChar);
@@ -30,17 +31,27 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
     return mixed.sort(() => 0.5 - Math.random());
   }, [character]);
 
-  const handleClick = (selectedChar: string) => {
-    setTimerStopped(true); // ⛔ stop timer after user clicks
-    const isCorrect = selectedChar === character;
+  const handleClick = (char: string) => {
+    if (selectedChar) return; // prevent multiple clicks
+    setTimerStopped(true);
+    setSelectedChar(char);
+    const isCorrect = char === character;
     onSelectCharacter(isCorrect);
   };
 
   const handleTimeEnd = () => {
     if (!timerStopped) {
-      onTimeOut(); // ⏰ time off only if not already answered
+      onTimeOut();
       setTimerStopped(true);
     }
+  };
+
+  // Function to get additional class based on selectedChar
+  const getClassName = (char: string) => {
+    if (!selectedChar) return "characterBoxStyle";
+    if (char !== selectedChar) return "characterBoxStyle"; // only clicked one gets a change
+    const isCorrect = char === character;
+    return `characterBoxStyle ${isCorrect ? "char-correct" : "char-incorrect"}`;
   };
 
   return (
@@ -55,7 +66,7 @@ const CharacterScreen: React.FC<CharacterScreenProps> = ({
         {characterOptions.map((char) => (
           <div
             key={char}
-            className="characterBoxStyle"
+            className={getClassName(char)}
             onClick={() => handleClick(char)}
           >
             {char}
