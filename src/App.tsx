@@ -35,10 +35,9 @@ const App: React.FC = () => {
     }
   };
 
-const handleGameStart = () => {
-  setScreen("choseTime"); // ✅ Go to time selection screen
-};
-
+  const handleGameStart = () => {
+    setScreen("choseTime"); // ✅ Go to time selection screen
+  };
 
   const handleTimeSelect = (time: number) => {
     setSelectedTime(time);
@@ -53,17 +52,18 @@ const handleGameStart = () => {
     setScreen("character");
   };
 
+  // Handle timeout scenario
+  const handleTimeout = () => {
+    setScreen("timeOff");
+  };
+
+  // Check if the selected character is correct
   const handleCharacterSelection = (isCorrect: boolean) => {
     if (isCorrect) {
       setResult("true");
     } else {
       setResult("false");
     }
-  };
-
-  // Handle timeout scenario
-  const handleTimeout = () => {
-    setScreen("timeOff");
   };
 
   return (

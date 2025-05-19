@@ -1,25 +1,35 @@
+// src/Time.tsx
 import React, { useEffect, useState } from "react";
 
 interface TimeProps {
   initialTime: number;
-  onTimeEnd: () => void; // Callback when time reaches 0
+  onTimeEnd: () => void;
+  stop?: boolean; // Optional prop to stop the timer
 }
 
-const Time: React.FC<TimeProps> = ({ initialTime, onTimeEnd }) => {
+const Time: React.FC<TimeProps> = ({
+  initialTime,
+  onTimeEnd,
+  stop = false,
+}) => {
   const [time, setTime] = useState(initialTime);
 
   useEffect(() => {
-    if (time <= 0) {
-      onTimeEnd(); // Trigger callback when time reaches 0
-      return;
-    }
+    if (stop || time <= 0) return;
 
     const timer = setInterval(() => {
-      setTime((prevTime) => prevTime - 1);
+      setTime((prevTime) => {
+        const nextTime = prevTime - 1;
+        if (nextTime <= 0) {
+          clearInterval(timer);
+          onTimeEnd();
+        }
+        return nextTime;
+      });
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [time, onTimeEnd]);
+  }, [time, stop, onTimeEnd]);
 
   return (
     <div className="clockStyles">
